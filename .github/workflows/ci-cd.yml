@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build-and-deploy:
+  build-and-push:
     runs-on: ubuntu-latest
 
     steps:
@@ -44,8 +44,8 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/team:latest
 
-  deploy:
-    needs: build-and-deploy
+  deploy-on-EC2:
+    needs: build-and-push
     runs-on: ubuntu-latest
 
     steps:
@@ -55,7 +55,7 @@ jobs:
         with:
           host: ${{ secrets.EC2_HOST }}     # EC2 서버의 public ip
           username: ${{ secrets.EC2_USER }} # EC2 계정 -> Ubuntu
-          key: ${{ secrets.EC2_SSH_KEY }}   # EC2 계정 비밀번호 -> *.pem
+          key: ${{ secrets.EC2_SSH_KEY }}   # EC2 계정 비밀번호 -> *.pem 파일의 내용을 복사
           script: |
             # 기존 컨테이너 중지 및 삭제
             sudo docker stop myapp || true
