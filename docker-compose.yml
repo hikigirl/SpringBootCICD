@@ -1,7 +1,7 @@
 services:
   app:
     image: ${DOCKER_USERNAME}/team:latest
-    container_name: app
+    container_name: team
     ports:
       - "8080:8080"
     environment:
@@ -13,20 +13,18 @@ services:
     restart: unless-stopped
     networks:
       - team-network
+
   oracle:
-    image: gvenzl/oracle-xe:18
+    image: gvenzl/oracle-xe:latest
     container_name: oracle
     ports:
-      - "1522:1521"
-      - "5551:5550"
+      - "1521:1521"
     shm_size: '1g'
     environment:
       - ORACLE_PASSWORD=java1234
-      - ORACLE_CHARACTERSET=AL32UTF8
-      - TZ=Asia/Seoul
     volumes:
-      - docker-data:/opt/oracle/oradata
-      - ./script.sql:/container-entrypoint-initdb.d
+      - oracle-data:/opt/oracle/oradata
+      - ./script.sql:/container-entrypoint-initdb.d/init.sql
     restart: unless-stopped
     networks:
       - team-network
@@ -34,19 +32,6 @@ services:
 networks:
   team-network:
     driver: bridge
-     
-volumes:
-  docker-data:    
-    
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+volumes:
+  oracle-data:
