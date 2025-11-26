@@ -1,16 +1,20 @@
 # CI/CD
 
 ### 파일 생성하기
-src/main/java
-- com.test.team.controller
-  - MainController.java
-- com.test.team.repository
-  - TestRepository.java
+- src/main/java
+  - com.test.team.controller
+    - MainController.java
+  - com.test.team.repository
+    - TestRepository.java
+    - TeamRepository.java(I)
+  - com.test.team.entity
+    - Team.java
 - templates
   - index.html
+  - list.html
 - src/test/java
   - com.test.team.repository
-  - TestRepositoryTests.java
+    - TestRepositoryTests.java
 
 ---
 ### CI/CD란...
@@ -18,6 +22,7 @@ src/main/java
 - Continuous Delivery/Deployment
 - 로컬(개발) → 커밋 → GitHub(저장소) → DockerHub(이미지) → AWS EC2(배포+실행)
 
+#### AWS에 배포해보기(DB 없이)
 1. 로컬(개발)
 2. 프로젝트 -> GitHub 연결하기
    1. 협업 목적
@@ -57,3 +62,11 @@ src/main/java
       2. Issue 생성하기 위한 권한 필요(yaml에서 수정)
       3. Issue 작성 위한 템플릿 작성: `.github/TEST_FAILURE_TEMPLATE.md`
       4. 이슈 작성 workflow 추가
+
+---
+#### AWS에 배포해보기(DB O)
+1. 기존 프로젝트 + 오라클 연동(JPA)
+   1. 로컬 개발 -> 로컬 오라클
+2. Docker Compose
+   1. Spring Boot 컨테이너 + Oracle 컨테이너
+   2. 프로젝트 루트: docker-compose.yaml
