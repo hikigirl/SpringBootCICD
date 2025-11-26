@@ -51,3 +51,9 @@ src/main/java
 8. 단위 테스트 추가하기
    1. 테스트 파일들 생성
 9. 단위 테스트 + GitHub Action
+   1. 단위 테스트가 성공하면 -> 문제 x
+   2. 단위 테스트가 실패해서 배포도 실패했을 경우
+      1. push 당사자에게 Github Issue를 생성해 전달하기
+      2. Issue 생성하기 위한 권한 필요(yaml에서 수정)
+      3. Issue 작성 위한 템플릿 작성: `.github/TEST_FAILURE_TEMPLATE.md`
+      4. 이슈 작성 workflow 추가
