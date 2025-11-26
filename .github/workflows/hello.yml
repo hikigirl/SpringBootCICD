@@ -1,0 +1,16 @@
+# hello.yaml
+name: hello.yml
+
+# 브랜치 지정
+on:
+  push:
+    branches: [ main ]
+
+# 행동 지정
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest # GitHub쪽의 인스턴스 운영체제
+    steps:
+      - name: GitHub Actions 테스트
+        run: |
+          echo "push가 발생하면 github action(hello.yaml)이 실행됩니다."
