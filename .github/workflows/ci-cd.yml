@@ -54,7 +54,7 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.EC2_HOST }}     # EC2 서버의 public ip
-          username: ${{ secrets.EC2_USER }} # EC2 계정 -> Ubuntu
+          username: ${{ secrets.EC2_USER }} # EC2 계정 -> ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}   # EC2 계정 비밀번호 -> *.pem 파일의 내용을 복사
           script: |
             # 기존 컨테이너 중지 및 삭제

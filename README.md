@@ -38,4 +38,4 @@
 7. CD 구현하기
    1. 도커허브 이미지 -> EC2에서 내려받기 -> 컨테이너 실행
    2. GitHub Actions secrets 등록<br>
-   3. ![alt text](image.png)
+   3. ![GitHub Action Secret 생성_EC2 접속 관련](images/03_add_EC2_Secrets.png)
