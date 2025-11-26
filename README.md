@@ -22,4 +22,7 @@
    1. 저장소에 push가 발생되면 미리 준비한 행동을 실행하는 도구
 5. GitHub Actions Workflow 파일
    1. `.github/workflows` 디렉토리 생성
-   2. 해당 디렉토리 내에 `hello.yaml` 생성
+   2. 해당 디렉토리 내에 `hello.yaml` 생성(테스트용)
+   3. 프로젝트용 Workflow 파일 생성(`ci-cd.yaml`)
+   4. push 발생 -> 해당 브랜치(main) checkout -> 소스 읽기 -> JDK 구축 -> Gradle 빌드 -> *.jar -> Dockerfile -> 컨테이너 이미지 생성 -> 도커허브에 업로드
+   5. ![도커 토큰 생성](images/image.png) 도커에서 토큰 생성 및 GitHub Actions Secret 등록
