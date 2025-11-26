@@ -1,10 +1,16 @@
 # CI/CD
 
 ### 파일 생성하기
+src/main/java
 - com.test.team.controller
   - MainController.java
+- com.test.team.repository
+  - TestRepository.java
 - templates
   - index.html
+- src/test/java
+  - com.test.team.repository
+  - TestRepositoryTests.java
 
 ---
 ### CI/CD란...
@@ -38,4 +44,10 @@
 7. CD 구현하기
    1. 도커허브 이미지 -> EC2에서 내려받기 -> 컨테이너 실행
    2. GitHub Actions secrets 등록<br>
-   3. ![GitHub Action Secret 생성_EC2 접속 관련](images/03_add_EC2_Secrets.png)
+      1. Public IP, *.pem, EC2 ID를 등록한다.
+      ![GitHub Action Secret 생성_EC2 접속 관련](images/03_add_EC2_Secrets.png)
+   3. EC2 인스턴스의 ip - 8080 포트로 접속하면 내가 만든 사이트가 보인다.
+   4. 이제 git에 push만 하고 기다리면 새로 수정한 내용이 반영된다.
+8. 단위 테스트 추가하기
+   1. 테스트 파일들 생성
+9. 단위 테스트 + GitHub Action

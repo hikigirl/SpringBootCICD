@@ -28,6 +28,10 @@ jobs:
         if: runner.os != 'Windows'
         run: chmod +x ./gradlew
 
+      - name: 단위 테스트 실행
+        run: ./gradlew test --no-daemon
+        #모든 테스트 파일을 한번에 실행, 모두 성공시에만 다음 단계로 진행됨
+
       - name: Gradle 빌드
         run: ./gradlew clean build
 
