@@ -70,3 +70,14 @@
 2. Docker Compose
    1. Spring Boot 컨테이너 + Oracle 컨테이너
    2. 프로젝트 루트: docker-compose.yaml
+---
+#### CI/CD 진행 시 보안상 노출되면 안되는 정보 관리하기
+- 개발 -> PUSH -> GitHub -> ci-cd.yaml 실행 -> docker-compose.yaml 실행
+- ci-cd.yaml
+  - GitHub Action -> GitHub이 실행 -> secrets.환경변수 접근 가능
+- docker-compose.yaml
+  - 도커 컴포즈
+  - GitHub이 실행하지 않음(EC2가 실행) -> secrets.환경변수 접근 불가
+  - 
+- application.yaml
+    - 스프링부트 환경 설정

@@ -1,30 +1,31 @@
 services:
-  app:
+  team:
     image: ${DOCKER_USERNAME}/team:latest
     container_name: team
     ports:
       - "8080:8080"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:oracle:thin:@oracle:1521/XEPDB1
-      - SPRING_DATASOURCE_USERNAME=springboot
-      - SPRING_DATASOURCE_PASSWORD=java1234
+      - SPRING_DATASOURCE_URL=${DB_URL}
+      - SPRING_DATASOURCE_USERNAME=${DB_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
     depends_on:
       - oracle
     restart: unless-stopped
     networks:
       - team-network
-
   oracle:
-    image: gvenzl/oracle-xe:latest
+    image: gvenzl/oracle-xe:18
     container_name: oracle
     ports:
       - "1521:1521"
-    shm_size: '1g'
+      - "5550:5550"
     environment:
-      - ORACLE_PASSWORD=java1234
+      - ORACLE_PASSWORD=${DB_PASSWORD}      
+      - ORACLE_CHARACTERSET=AL32UTF8
+      - TZ=Asia/Seoul
     volumes:
-      - oracle-data:/opt/oracle/oradata
-      - ./script.sql:/container-entrypoint-initdb.d/init.sql
+      - docker-data:/opt/oracle/oradata
+      - ./script.sql:/container-entrypoint-initdb.d/script.sql
     restart: unless-stopped
     networks:
       - team-network
@@ -32,6 +33,6 @@ services:
 networks:
   team-network:
     driver: bridge
-
+     
 volumes:
-  oracle-data:
+  docker-data:
